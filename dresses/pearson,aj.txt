@@ -1,0 +1,7 @@
+First name: aj
+Last name: pearson
+Street: 12 rr st
+City: pearch
+State: ma
+Zip: 49459
+Phone number:: 233-222-4567
