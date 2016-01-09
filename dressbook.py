@@ -5,7 +5,6 @@ import os
 import fileinput
 import sys
 folder = os.path.abspath("dresses")
-
 class Dress:
 	def __init__(self, first_name, last_name, street, city, state, zip, phone):
 		self.first_name = first_name
@@ -85,7 +84,8 @@ def on_button_click(nickname, first_name, last_name, street, city, state, zip, p
 def new_dress():
 	t = Toplevel(root)
 	t.minsize(250, 5)
-
+	icon_label=Label(t, image=icon)
+	icon_label.pack(anchor=E)
 	t.geometry('+460+80') 
 	t.wm_title("'dress maker")
 	
@@ -164,6 +164,8 @@ def edit_dress():
 	t = Toplevel(root)
 	t.geometry('+650+150')
 	t.minsize(250, 5)
+	icon_label=Label(t, image=icon)
+	icon_label.pack(anchor=E)
 	t.wm_title("'dress editor")
 	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
 	status.pack(side=BOTTOM, fill=X)
@@ -189,7 +191,6 @@ def edit_this_dress(filename, filename_clean, t):
 
 	frame = Frame(t)
 	frame.pack()
-
 	label_edit_this_dress = Label(frame, text="Which category do you want to edit?")
 	label_edit_this_dress.pack()	
 	this_dress = open(folder+"/"+filename, 'r')
@@ -201,7 +202,6 @@ def edit_this_dress(filename, filename_clean, t):
 def edit_category(each_line, filename, filename_clean, t):
 	frame = Frame (t)
 	frame.pack()
-
 	label_edit_this_category1 = Label(frame, text = "So you want to change " + each_line + ". . .") 
 	label_edit_this_category1.pack()
 	label_edit_this_category2 = Label(frame, text="Okay, what do you want to change it to?")
@@ -242,6 +242,8 @@ def show_all_dresses():
 	t.minsize(200, 5)
 	t.wm_title("See all 'dresses")
 	t.geometry('+460+150') 
+	icon_label=Label(t, image=icon)
+	icon_label.pack(anchor=E)
 	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
 	status.pack(side=BOTTOM, fill=X)
 	frame = Frame (t)
@@ -262,6 +264,8 @@ def show_this_dress(filename, filename_clean):
 	t.minsize(250, 5)
 	t.wm_title("'dress viewer")
 	t.geometry('+500+300') 
+	icon_label=Label(t, image=icon)
+	icon_label.pack(anchor=E)
 	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
 	status.pack(side=BOTTOM, fill=X)
 	label_edit_this_dress = Label(t, text=filename_clean+"'s dress")
@@ -282,6 +286,8 @@ def _quit(event):
     root.destroy()
 
 root = Tk()
+icon = PhotoImage(file="favicon1.png")
+root.tk.call('wm', 'iconphoto', root._w, icon)
 root.wm_title("'dressbook | Today's address book")
 root.geometry('400x120+140+80')
 menu = Menu(root)
@@ -297,6 +303,9 @@ subMenu.add_command(label="Quit", command=_quit)
 editMenu = Menu(menu)
 menu.add_cascade(labe="Edit", menu=editMenu)
 editMenu.add_command(label="Edit 'dress", command=edit_dress) 
+
+menu.add_cascade(image=icon)
+
 
 w = Frame(root)
 w.pack()
