@@ -233,7 +233,7 @@ def show_all_dresses():
 	t = Toplevel(root)
 	t.minsize(200, 5)
 	t.wm_title("See all 'dresses")
-	t.geometry('+460+220') 
+	t.geometry('+460+150') 
 
 	frame = Frame (t)
 	frame.pack()
@@ -252,7 +252,7 @@ def show_this_dress(filename, filename_clean):
 	t = Toplevel(root)
 	t.minsize(250, 5)
 	t.wm_title("'dress viewer")
-	t.geometry('+900+400') 
+	t.geometry('+500+300') 
 
 	label_edit_this_dress = Label(t, text=filename_clean+"'s dress")
 	label_edit_this_dress.pack()
