@@ -1,8 +1,9 @@
+#-*- coding: iso-8859-1 -*-
+
 from Tkinter import *
 import os
 import fileinput
 import sys
-
 folder = os.path.abspath("dresses")
 
 class Dress:
@@ -87,6 +88,10 @@ def new_dress():
 
 	t.geometry('+460+80') 
 	t.wm_title("'dress maker")
+	
+	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
+	status.pack(side=BOTTOM, fill=X)
+
 	frame = Frame (t)
 	frame.pack(side=RIGHT)
 
@@ -160,6 +165,9 @@ def edit_dress():
 	t.geometry('+650+150')
 	t.minsize(250, 5)
 	t.wm_title("'dress editor")
+	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
+	status.pack(side=BOTTOM, fill=X)
+
 	frame = Frame(t)
 	frame.pack()
 	label_edit = Label(frame, text="Which dress do you want to edit?")
@@ -234,7 +242,8 @@ def show_all_dresses():
 	t.minsize(200, 5)
 	t.wm_title("See all 'dresses")
 	t.geometry('+460+150') 
-
+	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
+	status.pack(side=BOTTOM, fill=X)
 	frame = Frame (t)
 	frame.pack()
 	for filename in os.listdir(folder):		
@@ -253,7 +262,8 @@ def show_this_dress(filename, filename_clean):
 	t.minsize(250, 5)
 	t.wm_title("'dress viewer")
 	t.geometry('+500+300') 
-
+	status = Label(t, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
+	status.pack(side=BOTTOM, fill=X)
 	label_edit_this_dress = Label(t, text=filename_clean+"'s dress")
 	label_edit_this_dress.pack()
 	this_dress = open(folder+"/"+filename, 'r')
@@ -273,7 +283,7 @@ def _quit(event):
 
 root = Tk()
 root.wm_title("'dressbook | Today's address book")
-root.geometry('400x100+140+80')
+root.geometry('400x120+140+80')
 menu = Menu(root)
 root.config(menu=menu)
 
@@ -310,12 +320,14 @@ separator = Frame(height=2, bd=1, relief=SUNKEN)
 separator.pack(fill=X, padx=5, pady=10)
 
 x = Frame(root)
-x.pack(side=BOTTOM)
+x.pack()
 quit_button = Button(x, width=150, text="quit 'dressbook")
 quit_button.bind("<Button-1>", _quit)
 quit_button.config(bg="pink", fg="red")
 quit_button.pack(fill=X)
 
+status = Label(root, text="© 2015 Danny Cairns", bg="white", bd=1, relief=SUNKEN, anchor=W)
+status.pack(side=BOTTOM, fill=X)
 root.bind('<Control-Q>', _quit)
 root.bind('<Control-q>', _quit)
 
