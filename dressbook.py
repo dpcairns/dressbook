@@ -81,8 +81,10 @@ def on_button_click(nickname, first_name, last_name, street, city, state, zip, p
 
 
 
-def new_dress(event):
+def new_dress():
 	t = Toplevel(root)
+	t.minsize(250, 5)
+
 	t.geometry('+460+80') 
 	t.wm_title("'dress maker")
 	frame = Frame (t)
@@ -153,9 +155,10 @@ def new_dress(event):
 	cancel_button.config(bg="pink", fg="red")
 	cancel_button.pack()
 
-def edit_dress(event):
+def edit_dress():
 	t = Toplevel(root)
-	t.geometry('+650+150') 
+	t.geometry('+650+150')
+	t.minsize(250, 5)
 	t.wm_title("'dress editor")
 	frame = Frame(t)
 	frame.pack()
@@ -226,10 +229,11 @@ def replaceAll(file,searchExp,replaceExp):
             line = line.replace(searchExp,replaceExp)
         sys.stdout.write(line)
 
-def show_all_dresses(event):
+def show_all_dresses():
 	t = Toplevel(root)
+	t.minsize(200, 5)
 	t.wm_title("See all 'dresses")
-	t.geometry('+800+300') 
+	t.geometry('+460+220') 
 
 	frame = Frame (t)
 	frame.pack()
@@ -246,6 +250,7 @@ def show_all_dresses(event):
 
 def show_this_dress(filename, filename_clean):
 	t = Toplevel(root)
+	t.minsize(250, 5)
 	t.wm_title("'dress viewer")
 	t.geometry('+900+400') 
 
@@ -268,25 +273,36 @@ def _quit(event):
 
 root = Tk()
 root.wm_title("'dressbook | Today's address book")
-root.geometry('400x100+140+80') 
+root.geometry('400x100+140+80')
+menu = Menu(root)
+root.config(menu=menu)
+
+subMenu = Menu(menu)
+menu.add_cascade(label="File", menu=subMenu)
+subMenu.add_command(label="New 'dress", command=new_dress)
+subMenu.add_command(label="View all 'dresses", command=show_all_dresses) 
+subMenu.add_separator()
+subMenu.add_command(label="Quit", command=_quit)
+
+editMenu = Menu(menu)
+menu.add_cascade(labe="Edit", menu=editMenu)
+editMenu.add_command(label="Edit 'dress", command=edit_dress) 
+
 w = Frame(root)
 w.pack()
 label1 = Label(w, text="Welcome to dressBook!")
 label1.pack()
 
-new_dress_button = Button(w, text ="New dress")
-new_dress_button.bind("<Button-1>", new_dress)
+new_dress_button = Button(w, text ="New dress", command=new_dress)
 new_dress_button.config(bg="lightgreen", fg="green")
 new_dress_button.pack(side=LEFT)
 
-edit_dress_button = Button(w, text="Edit dress")
-edit_dress_button.bind("<Button-1>", edit_dress)
+edit_dress_button = Button(w, text="Edit dress", command=edit_dress)
 edit_dress_button.config(bg="lightyellow", fg="orange")
 edit_dress_button.pack(side=LEFT)
 
 
-view_dress_button = Button(w, text="View all dresses")
-view_dress_button.bind("<Button-1>", show_all_dresses)
+view_dress_button = Button(w, text="View all dresses", command=show_all_dresses)
 view_dress_button.config(bg="lightblue", fg="blue")
 view_dress_button.pack(side=LEFT)
 
